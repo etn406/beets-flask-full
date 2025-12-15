@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  beets-flask-full:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: beets-flask-full:latest
+    container_name: beets-flask-full
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      # Timezone configuration
+      TZ: Europe/Berlin
+      # User and group IDs (adjust to match your host system)
+      # 502 is default on macOS, 1000 on Linux
+      USER_ID: 1000
+      GROUP_ID: 1000
+    volumes:
+      # Configuration directory
+      - ./config:/config
+      # Music directories - match paths inside and outside container
+      - ./music/inbox:/music/inbox
+      - ./music/imported:/music/imported
+    # Optional: uncomment to limit resources
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '2.0'
+    #       memory: 2G
