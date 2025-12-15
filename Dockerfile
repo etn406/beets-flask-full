@@ -19,8 +19,8 @@ USER root
 # Copy any custom configuration files or scripts
 # COPY ./custom-scripts/ /repo/custom-scripts/
 
-# Ensure proper permissions
-RUN chown -R beetle:beetle /repo
+# Ensure proper permissions for custom files (uncomment when adding custom content)
+# RUN chown -R beetle:beetle /repo
 
 # Switch back to beetle user
 USER beetle
