@@ -30,7 +30,7 @@ Plus additional customizations (add your custom features here).
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/etn406/beets-flask-full.git
+   git clone <repository-url>
    cd beets-flask-full
    ```
 
