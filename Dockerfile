@@ -27,6 +27,7 @@ RUN apk add gcc musl-dev linux-headers
 
 RUN echo "py7zr" >> /config/requirements.txt
 
+##########################################
 # Keyfinder plugin support
 # @see https://github.com/evanpurkhiser/keyfinder-cli
 
@@ -36,6 +37,12 @@ RUN apk update && \
         ffmpeg-dev \
         libkeyfinder-dev
 
-# WIP
-# RUN git clone --depth=1 https://github.com/evanpurkhiser/keyfinder-cli.git
-# RUN cmake -DCMAKE_INSTALL_PREFIX=/where/you/want/to/install/to -S . -B build
+WORKDIR /build 
+RUN git clone --depth=1 https://github.com/evanpurkhiser/keyfinder-cli.git && \
+    cd keyfinder-cli && \
+    cmake -DCMAKE_INSTALL_PREFIX=/usr/bin/keyfinder-cli -S . -B build && \
+    cmake --build build && \
+    cmake --install build && \
+    cd .. && \
+    rm -rf keyfinder-cli
+
